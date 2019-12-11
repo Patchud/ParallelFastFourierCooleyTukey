@@ -1,0 +1,38 @@
+Implementation of the Binary Exchange DIT-FFT algorithm.
+
+By Patrick Hudgell and Uvin Abeysinghe
+
+Inputs
+	- The input file is redirected from STDIN.
+	- The first line of the file is the number of ppints
+	  in the FFT.
+	- Following that the points of the FFT are listed in order
+	  in a real complex format, separated by space.
+	- The program will only run on inputs with the number of points
+	  being a factor of 2
+	- Otherwise zero padding can be used. Zero padding is a common
+	  technique used in Cooley Tukey based FFT solvers, as they 
+	  need to have an input that is the size of a power of two.
+	- In addition to this, the number of instances of the program
+	  must be a power of two. This is because this program uses the symmetry
+	  properties of the butterfly network.
+
+Output
+	- The results will be printed to STDOUT
+
+The fftGen.py script will generate a input script, with 2^25 values for the
+FFT to solve. This will be output as fft.txt
+
+This can be executed by running python3 fftGen.py
+
+
+
+
+Compile Settings
+
+The python script fftGen.py can be run. This generates fft.txt
+
+mpicc -O3 -lm fft2.c -o fft
+mpirun -np 4 fft < fft.txt
+
+In addition to this a 1024 point input file has been provided as test1024.txt.
